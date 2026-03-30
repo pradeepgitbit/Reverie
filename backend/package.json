@@ -1,7 +1,7 @@
 {
-  "name": "jerney-backend",
+  "name": "reverie-backend",
   "version": "1.0.0",
-  "description": "Jerney Blog Platform - Backend API",
+  "description": "Reverie Blog Platform - Backend API",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
