@@ -9,9 +9,11 @@ set -e
 echo "🛤️  Setting up Reverie Blog Platform..."
 echo "=========================================="
 
+
 # --- Update system ---
 echo "📦 Updating system packages..."
 sudo apt update && sudo apt upgrade -y
+
 
 # --- Install Node.js 20.x ---
 echo "📦 Installing Node.js 20.x..."
@@ -21,17 +23,21 @@ sudo apt install -y nodejs
 echo "Node.js version: $(node -v)"
 echo "npm version: $(npm -v)"
 
+
 # --- Install PostgreSQL ---
 echo "📦 Installing PostgreSQL..."
 sudo apt install -y postgresql postgresql-contrib
+
 
 # --- Install Nginx ---
 echo "📦 Installing Nginx..."
 sudo apt install -y nginx
 
+
 # --- Install PM2 (process manager) ---
 echo "📦 Installing PM2..."
 sudo npm install -g pm2
+
 
 # --- Configure PostgreSQL ---
 echo "🗄️  Configuring PostgreSQL..."
@@ -45,24 +51,29 @@ EOF
 
 echo "✅ PostgreSQL configured"
 
+
 # --- Set up project directory ---
 echo "📁 Setting up project..."
 sudo mkdir -p /var/www/reverie
 sudo chown -R $USER:$USER /var/www/reverie
 
+
 # Copy project files (assumes you've transferred them to ~/Reverie)
 cp -r ~/Reverie/* /var/www/reverie/
+
 
 # --- Install backend dependencies ---
 echo "📦 Installing backend dependencies..."
 cd /var/www/reverie/backend
 npm install --production
 
+
 # --- Build frontend ---
 echo "🔨 Building frontend..."
 cd /var/www/reverie/frontend
 npm install
 npm run build
+
 
 # --- Configure Nginx ---
 echo "🌐 Configuring Nginx..."
@@ -72,6 +83,7 @@ sudo rm -f /etc/nginx/sites-enabled/default
 sudo nginx -t
 sudo systemctl restart nginx
 sudo systemctl enable nginx
+
 
 # --- Start backend with PM2 ---
 echo "🚀 Starting backend with PM2..."
