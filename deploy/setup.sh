@@ -7,7 +7,7 @@
 set -e
 
 echo "🛤️  Setting up Reverie Blog Platform..."
-echo "==========================================="
+echo "=========================================="
 
 # --- Update system ---
 echo "📦 Updating system packages..."
